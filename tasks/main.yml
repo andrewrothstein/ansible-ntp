@@ -1,0 +1,21 @@
+---
+- name: (RedHat) pkg install
+  when: ansible_os_family == 'RedHat'
+  include: install-RedHat.yml
+
+- name: (Debian) pkg install
+  when: ansible_os_family == 'Debian'
+  include: install-Debian.yml
+
+- name: configure...
+  template: >
+    src=etc/ntp.conf.j2
+    dest=/etc/ntp.conf
+    mode=644
+    owner=root
+    group=root
+
+- name: start ntpd
+  service: name=ntpd state=restarted enabled=yes
+
+  
