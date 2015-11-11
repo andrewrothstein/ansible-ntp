@@ -15,7 +15,12 @@
     owner=root
     group=root
 
-- name: start ntpd
-  service: name=ntpd state=restarted enabled=yes
+- name: (RedHat) boot ntp(d)
+  when: ansible_os_family == 'RedHat'
+  include: boot-RedHat.yml
 
+- name: (Debian) boot ntp(d)
+  when: ansible_os_family == 'Debian'
+  include: boot-Debian.yml
+  
   
