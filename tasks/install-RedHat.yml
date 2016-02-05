@@ -1,5 +1,5 @@
 ---
 - name: install ntp
-  package: name=ntp state=latest
+  package: name=ntp state=present
   
 
