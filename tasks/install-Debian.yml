@@ -1,3 +1,0 @@
----
-- name: install ntpd
-  package: name=ntp state=present

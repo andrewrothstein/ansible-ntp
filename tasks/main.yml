@@ -1,26 +1,32 @@
 ---
-- name: (RedHat) pkg install
-  when: ansible_os_family == 'RedHat'
-  include: install-RedHat.yml
+- name: resolve platform specific vars
+  include_vars: "{{item}}"
+  with_first_found:
+    - "{{ansible_distribution}}-{{ansible_distribution_release}}.yml"
+    - "{{ansible_distribution}}.yml"
+    - "{{ansible_os_family}}.yml"
 
-- name: (Debian) pkg install
-  when: ansible_os_family == 'Debian'
-  include: install-Debian.yml
+- name: pkg install
+  become: yes
+  become_user: root
+  package: name={{item}} state=present
+  with_items: '{{ntp_pkgs}}'
 
 - name: configure...
+  become: yes
+  become_user: root
+  with_items:
+    - etc/ntp.conf
   template: >
-    src=etc/ntp.conf.j2
-    dest=/etc/ntp.conf
-    mode=644
+    src={{item}}.j2
+    dest=/{{item}}
+    mode=0644
     owner=root
     group=root
 
-- name: (RedHat) boot ntp(d)
-  when: ansible_os_family == 'RedHat'
-  include: boot-RedHat.yml
-
-- name: (Debian) boot ntp(d)
-  when: ansible_os_family == 'Debian'
-  include: boot-Debian.yml
+- name: launch service
+  become: yes
+  become_user: root
+  service: name={{ntp_service}} state=started enabled=yes
   
   
