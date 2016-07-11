@@ -2,4 +2,4 @@
 ntp_pkgs :
   - ntpd
 
-ntp_service: ntpd
+ntp_service: ntp
