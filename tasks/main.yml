@@ -31,6 +31,7 @@
 - name: launch service
   become: yes
   become_user: root
+  when: ntp_activate
   service:
     name: '{{ ntp_service | default("ntpd") }}'
     state: started

@@ -10,4 +10,4 @@ ntp_restrict:
   - '::1'
 
 ntp_driftfile: /var/lib/ntp/drift
-ntp_start: True
+ntp_activate: True
