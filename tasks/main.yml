@@ -21,10 +21,11 @@
   become: yes
   become_user: root
   with_items:
-    - f: ntp.conf
+    - t: ntp.conf.j2
+      f: '{{ ntp_conf | default("ntp.conf") }}'
       d: /etc
   template:
-    src: '{{ item.f }}.j2'
+    src: '{{ item.t }}'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m | default("0644") }}'
 

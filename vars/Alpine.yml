@@ -1,0 +1,4 @@
+---
+ntp_pkgs:
+  - openntpd
+ntp_conf: ntpd.conf
