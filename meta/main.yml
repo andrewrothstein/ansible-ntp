@@ -12,13 +12,11 @@ galaxy_info:
         - 7
     - name: Fedora
       versions:
-        - 21
+        - all
     - name: Ubuntu
       versions:
-        - trusty
-
+        - all
   galaxy_tags:
     - development
 
 dependencies: []
-  
