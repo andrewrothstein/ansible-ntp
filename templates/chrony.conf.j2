@@ -1,0 +1,5 @@
+driftfile {{ chrony_driftfile }}
+
+{% for upstream in ntp_upstream %}
+Server {{ upstream }}
+{% endfor %}

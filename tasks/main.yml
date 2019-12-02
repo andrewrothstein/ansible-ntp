@@ -21,7 +21,7 @@
   become: yes
   become_user: root
   with_items:
-    - t: ntp.conf.j2
+    - t: '{{ ntp_conf | default("ntp.conf") }}.j2'
       f: '{{ ntp_conf | default("ntp.conf") }}'
       d: /etc
   template:

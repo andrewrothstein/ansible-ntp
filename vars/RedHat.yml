@@ -1,0 +1,16 @@
+---
+ntp_services:
+  '7': ntp
+  '8': chronyd
+
+ntp_pkgs_by_ver:
+  '7': ["ntp"]
+  '8': ["chrony"]
+
+ntp_conf_by_ver:
+  '7': ntp.conf
+  '8': chrony.conf
+
+ntp_service: '{{ ntp_services[ansible_distribution_major_version] }}'
+ntp_pkgs: '{{ ntp_pkgs_by_ver[ansible_distribution_major_version] }}'
+ntp_conf: '{{ ntp_conf_by_ver[ansible_distribution_major_version] }}'
