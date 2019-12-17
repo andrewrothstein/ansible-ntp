@@ -1,6 +1,6 @@
 ---
 ntp_services:
-  '7': ntp
+  '7': ntpd
   '8': chronyd
 
 ntp_pkgs_by_ver:
