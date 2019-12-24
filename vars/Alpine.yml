@@ -1,4 +1,5 @@
 ---
 ntp_pkgs:
-  - openntpd
-ntp_conf: ntpd.conf
+  - chrony
+ntp_conf: chrony.conf
+ntp_service: chronyd
