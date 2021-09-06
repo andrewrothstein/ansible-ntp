@@ -1,8 +1,8 @@
 andrewrothstein.ntp
 ===========================
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-ntp.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-ntp)
+![Build Status](https://github.com/andrewrothstein/ansible-ntp/actions/workflows/build.yml/badge.svg)
 
-Installs an NTP daemon
+Installs an NTP daemon.
 
 Requirements
 ------------
