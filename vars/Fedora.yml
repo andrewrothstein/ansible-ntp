@@ -1,5 +1,5 @@
 ---
-ntp_service: ntp
+ntp_service: chronyd
 ntp_pkgs:
-  - ntp
-ntp_conf: ntp.conf
+  - chrony
+ntp_conf: chrony.conf
