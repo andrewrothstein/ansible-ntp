@@ -12,4 +12,4 @@ ntp_restrict:
 ntp_driftfile: /var/lib/ntp/drift
 chrony_driftfile: /var/lib/chrony/drift
 
-ntp_activate: True
+ntp_activate: true

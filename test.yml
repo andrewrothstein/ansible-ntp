@@ -2,4 +2,4 @@
 - hosts: all
   roles:
     - role: '{{ playbook_dir }}'
-      ntp_activate: False
+      ntp_activate: false

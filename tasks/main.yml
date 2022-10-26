@@ -10,15 +10,15 @@
       paths:
         - '{{ role_path }}/vars'
 
-- name: pkg install
-  become: yes
+- name: installing OS packages
+  become: true
   become_user: root
   package:
     name: '{{ ntp_pkgs | default(["ntp"]) }}'
     state: present
 
-- name: configure...
-  become: yes
+- name: templatizing...
+  become: true
   become_user: root
   with_items:
     - t: '{{ ntp_conf | default("ntp.conf") }}.j2'
@@ -30,10 +30,10 @@
     mode: '{{ item.m | default("0644") }}'
 
 - name: launch service
-  become: yes
+  become: true
   become_user: root
   when: ntp_activate
   service:
     name: '{{ ntp_service | default("ntpd") }}'
     state: started
-    enabled: yes
+    enabled: true
