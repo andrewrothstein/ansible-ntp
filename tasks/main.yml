@@ -1,6 +1,6 @@
 ---
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -10,30 +10,30 @@
       paths:
         - '{{ role_path }}/vars'
 
-- name: installing OS packages
+- name: Installing OS packages
   become: true
   become_user: root
-  package:
+  ansible.builtin.package:
     name: '{{ ntp_pkgs | default(["ntp"]) }}'
     state: present
 
-- name: templatizing...
+- name: Templatizing...
   become: true
   become_user: root
   with_items:
     - t: '{{ ntp_conf | default("ntp.conf") }}.j2'
       f: '{{ ntp_conf | default("ntp.conf") }}'
       d: /etc
-  template:
+  ansible.builtin.template:
     src: '{{ item.t }}'
     dest: '{{ item.d }}/{{ item.f }}'
-    mode: '{{ item.m | default("0644") }}'
+    mode: '{{ item.m | default("644") }}'
 
-- name: launch service
+- name: Launch service
   become: true
   become_user: root
   when: ntp_activate
-  service:
+  ansible.builtin.service:
     name: '{{ ntp_service | default("ntpd") }}'
     state: started
     enabled: true
